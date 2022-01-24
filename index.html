@@ -1,0 +1,22 @@
+<script>
+    var exampleSocket = new WebSocket("ws://127.0.0.1:8000/ws");
+
+    document.body.addEventListener("click", () => {
+        console.log("click");
+        // exampleSocket.send("trigger_click");
+    })
+
+    document.body.addEventListener("keydown", (ev) => {
+        if (ev.code === "AltRight") {
+            // console.time("trigger sended");
+            // fetch("http://127.0.0.1:8888/trigger_click").then(res => res.json()).then(data => {
+            // console.timeEnd("trigger sended");
+            // })
+
+            ev.preventDefault();
+            ev.stopPropagation();
+            exampleSocket.send("trigger_click");
+            return false
+        }
+    })
+</script>
